@@ -5,7 +5,7 @@ function fixed_MFCC(audio_file)
 
 %args: segment size, overlap size, target number of segments
 segment_size=256;%512;
-overlap_size=round(2*segment_size/3);
+overlap_size=ceil(2*segment_size/3);
 target_num_segs=60;
 
 %fft_size=round((segment_size-overlap_size + 1)/2);
@@ -17,7 +17,7 @@ target_segs=zeros(target_num_segs,fft_size);
 input_time_length=length(input_sound)/fs;
 
 %calculate if integer number of segments will fit into input sound
-modulus=mod(length(input_sound),segment_size-overlap_size);
+modulus=mod(length(input_sound)-segment_size,segment_size-overlap_size);
 
 %pad zeros if necessary
 if modulus   
@@ -26,7 +26,7 @@ else
     input_sound=input_sound';
 end
 
-num_segs=length(input_sound)/(segment_size-overlap_size)-1;
+num_segs=(length(input_sound)-segment_size)/(segment_size-overlap_size);
 
 segs=zeros(num_segs,fft_size);
 
@@ -68,7 +68,7 @@ elseif num_segs > target_num_segs
     end    
 %same size already    
 else
-    target_segs=segs';
+    target_segs=segs;
 end
     
 %Mel-scale & Log magnitude map
