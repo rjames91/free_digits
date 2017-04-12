@@ -4,9 +4,9 @@ function fixed_MFCC(audio_file)
 [input_sound,fs]=audioread(audio_file);
 
 %args: segment size, overlap size, target number of segments
-segment_size=512;
-overlap_size=segment_size/2;
-target_num_segs=20;%1200; %(150ms @ 8kHz)
+segment_size=256;%512;
+overlap_size=round(2*segment_size/3);
+target_num_segs=60;
 
 %fft_size=round((segment_size-overlap_size + 1)/2);
 fft_size=segment_size;

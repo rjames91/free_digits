@@ -158,7 +158,7 @@ AN_IHCsynapseParams.numFibers=100;
 % absolute refractory period. Relative refractory period is the same. 
 AN_IHCsynapseParams.refractory_period=	0.00075;
 AN_IHCsynapseParams.TWdelay=0.004;  % ?delay before stimulus first spike
-AN_IHCsynapseParams.spikesTargetSampleRate=sampleRate/5;%sampleRate;%10000;
+AN_IHCsynapseParams.spikesTargetSampleRate=sampleRate;%sampleRate/5;%10000;
 % AN_IHCsynapseParams.ANspeedUpFactor=5; % longer epochs for computing spikes.
 
 % c=kym/(y(l+r)+kl)	(spontaneous rate)

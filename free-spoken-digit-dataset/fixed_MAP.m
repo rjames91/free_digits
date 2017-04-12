@@ -7,12 +7,12 @@ global CNoutput dtSpikes ANoutput ICoutput
 fileName=audio_file;%'./recordings/0_jackson_0.wav';%'./recordings/vowels_a.wav';%
 runMAP1_14_DRNL([],fileName,[]);
 %Use CN output
-model_output=CNoutput(1+(end/2):end,:);
+model_output=ICoutput(1+(end/2):end,:);
 
-target_num_segs=20;
+target_num_segs=60;
 target_norm=zeros(size(model_output,1),target_num_segs);
 
-PSTHbinwidth=0.02%0.005;%seconds
+PSTHbinwidth=0.05;%0.005;%seconds
 dt=dtSpikes;%seconds
 
 %post stimulus time histogram

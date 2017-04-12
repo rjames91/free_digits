@@ -194,6 +194,7 @@ test_signal=inputSignal;
 
 
 %% the model run is now complete. Now display the results
+
 %UTIL_showMAP(showMapOptions);%, paramChanges)
 
 if strcmp(signalType,'tones')
