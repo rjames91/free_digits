@@ -37,6 +37,9 @@ num_segs=size(norm,2);
 %remove or add segments
 %repeat num_segs in target
 if target_num_segs > num_segs
+    
+    index=1;
+    
     for i=1:target_num_segs
        
         check=mod(i,ceil(target_num_segs/num_segs));
