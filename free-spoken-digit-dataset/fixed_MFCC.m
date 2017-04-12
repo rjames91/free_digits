@@ -68,7 +68,7 @@ elseif num_segs > target_num_segs
     end    
 %same size already    
 else
-    target_segs=segs;
+    target_segs=segs';
 end
     
 %Mel-scale & Log magnitude map
