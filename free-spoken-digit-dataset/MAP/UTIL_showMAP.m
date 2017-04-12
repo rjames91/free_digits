@@ -93,7 +93,7 @@ if showMapOptions.printFiringRates
     else
         HSRprobOutput= ANprobRateOutput(end-length(savedBFlist)+1:end,:);
         disp(['AN(HSR): ' num2str(mean(mean(HSRprobOutput)))])
-        PSTH= UTIL_PSTHmakerb(HSRprobOutput, dt, 0.001);
+        PSTH= UTIL_PSTHmaker(HSRprobOutput, dt, 0.001);
         disp(['max max AN: ' num2str(max(max(PSTH)))])
     end
 end

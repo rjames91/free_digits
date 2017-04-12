@@ -1,32 +1,34 @@
 function fixed_MAP(audio_file)
 
-global CNoutput dtSpikes ANoutput ICoutput
+global CNoutput dtSpikes ANoutput ICoutput ANprobRateOutput
 
 
 %run MAP model for audio at 60dBSPL
 fileName=audio_file;%'./recordings/0_jackson_0.wav';%'./recordings/vowels_a.wav';%
 runMAP1_14_DRNL([],fileName,[]);
 %Use CN output
-model_output=ICoutput(1+(end/2):end,:);
+model_output=ANprobRateOutput(1+(end/2):end,:);
 
 target_num_segs=60;
 target_norm=zeros(size(model_output,1),target_num_segs);
 
-PSTHbinwidth=0.05;%0.005;%seconds
-dt=dtSpikes;%seconds
-
-%post stimulus time histogram
-PSTH=UTIL_PSTHmaker(model_output,dt,PSTHbinwidth);
-%rates 
-rates=PSTH./PSTHbinwidth;
-%average aross neurons
-AvRates=mean(PSTH,1)/PSTHbinwidth;
-
-Onset= max(AvRates);
-Saturated= mean(AvRates(round(length(AvRates)/2): end));
+% PSTHbinwidth=0.05;%0.005;%seconds
+% dt=dtSpikes;%seconds
+% 
+% %post stimulus time histogram
+% PSTH=UTIL_PSTHmaker(model_output,dt,PSTHbinwidth);
+% %rates 
+% rates=PSTH./PSTHbinwidth;
+% %average aross neurons
+% AvRates=mean(PSTH,1)/PSTHbinwidth;
+% 
+% Onset= max(AvRates);
+% Saturated= mean(AvRates(round(length(AvRates)/2): end));
 
 %figure;
 %plot(rates);
+
+rates=model_output;
 
 norm=rates./max(max(rates));
 

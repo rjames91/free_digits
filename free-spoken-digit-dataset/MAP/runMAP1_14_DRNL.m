@@ -43,9 +43,9 @@ MAPparamsName='Normal';
 
 
 %% #2 probability (fast) or spikes (slow) representation: select one
- AN_spikesOrProbability='spikes';
+% AN_spikesOrProbability='spikes';
 %   or
-%AN_spikesOrProbability='probability';
+AN_spikesOrProbability='probability';
 
 
 %% #3 A. pure tone, B. harmonic sequence or C. speech file input
