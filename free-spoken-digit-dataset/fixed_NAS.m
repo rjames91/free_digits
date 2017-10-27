@@ -1,4 +1,4 @@
-function [rates] = fixed_NAS(file,bin_width,window_width,dir,num_chans)
+function [rates_window_flat] = fixed_NAS(file,bin_width,window_width,dir,num_chans)
 
 %load input AEDAT
 [ID,times]=loadaerdat(file);%loadaerdat('0a9f9af7_nohash_0.wav.aedat');
@@ -37,12 +37,15 @@ end
 %pad rate matrix with window width zeros
 rates = [zeros(size(rates,1),window_width-1),rates,zeros(size(rates,1),window_width-1)];
 %loop across overlapping windows to generate final output data
+rates_window_flat = zeros(num_chans*window_width,  size(rates,2)-window_width);
 for i = 1:size(rates,2)-window_width
-    stripped_file_name = strsplit(file,'/');
-    stripped_file_name = cell2mat(stripped_file_name(end));
-    out_file_name = ['./NAS_rates/',strcat(stripped_file_name(1:9),sprintf('%d',i)),'_',dir];
+    %stripped_file_name = strsplit(file,'/');
+    %stripped_file_name = cell2mat(stripped_file_name(end));
+    %out_file_name = ['./NAS_rates/',strcat(stripped_file_name(1:9),sprintf('%d',i)),'_',dir];
     out_var = rates(:,i:i+window_width-1); 
-    save(out_file_name,'out_var');
+    %save(out_file_name,'out_var');
+    
+    rates_window_flat(:,i) = reshape(out_var,[],1); %Flatten each of the matrices to a single column and stack them on 'rates_window_flat'
 end
 
 end
